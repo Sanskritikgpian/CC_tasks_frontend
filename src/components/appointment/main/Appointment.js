@@ -37,7 +37,7 @@ const Appointment = () => {
         setFirstNameErr(!firstName);
         setLastNameErr(!lastName);
         setRollNumErr(!rollNum);
-        setEmailErr(!email);
+        setEmailErr(!validator.isEmail(email));
 
         // email check
         setErrorMsg(!validator.isEmail(email) ? "Please, enter a proper email." : "");
@@ -71,9 +71,7 @@ const Appointment = () => {
         <div className="appointment">
             {inProgress ? <Loader /> : null}
             <Snackbar open={alert} autoHideDuration={15000} onClose={() => setAlert(false)}>
-                <Alert onClose={() => setAlert(false)} severity="success" sx={{ width: "100%" }}>
-                    Appointment booked!
-                </Alert>
+                <Alert onClose={() => setAlert(false)} severity="success" sx={{ width: "100%" }}>Appointment booked!</Alert>
             </Snackbar>
             <form className="appointment__form" onSubmit={e => handleAppointment(e)}>
                 <h1 style={{ color: "teal" }}>Book an appointment today.</h1>
@@ -82,7 +80,7 @@ const Appointment = () => {
                     <TextField variant="standard" label="Last Name" error={lastNameErr} helperText={lastNameErr ? "Please, enter your last name." : ""} value={lastName} onChange={e => setLastName(e.target.value)} style={{ marginLeft: "10px" }} inputProps={disableAutoComplete} />
                 </div>
                 <div className="appointment__info">
-                    <TextField variant="standard" label="Email" error={emailErr} helperText={emailErr ? "Please, enter your email." : ""} value={email} onChange={e => setEmail(e.target.value)} style={{ marginRight: "10px" }} inputProps={disableAutoComplete} />
+                    <TextField variant="standard" label="Email" error={emailErr} helperText={emailErr ? "Please, enter your proper email." : ""} value={email} onChange={e => setEmail(e.target.value)} style={{ marginRight: "10px" }} inputProps={disableAutoComplete} />
                     <TextField variant="standard" label="Roll Number" error={rollNumErr} helperText={rollNumErr ? "Please, enter your roll number." : ""} value={rollNum} onChange={e => setRollNum(e.target.value)} style={{ marginLeft: "10px" }} inputProps={disableAutoComplete} />
                 </div>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>

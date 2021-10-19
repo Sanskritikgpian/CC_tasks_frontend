@@ -1,0 +1,78 @@
+.postCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 95vw;
+  max-width: 300px;
+  margin: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: #64646f33 0px 7px 29px 0px;
+  transition: all 1s;
+  user-select: none;
+}
+
+.postCard:hover {
+  transform: scale(1.005);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.postCard > .MuiButton-root {
+  align-self: flex-end;
+  text-transform: none;
+  color: white;
+  background-color: #1976d2;
+  transition: all 0.5s;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.postCard > .MuiButton-root:hover {
+  filter: brightness(80%);
+  background-color: #1976d2;
+  transform: translateX(-5px);
+}
+
+.postCard__date {
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+}
+
+.postCard__photo {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(80%);
+}
+
+.postCard__title {
+  color: #1976d2;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.postCard__title,
+.postCard__content {
+  margin: 0 10px;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 1011px) {
+  .postCard {
+    max-width: 350px;
+  }
+}
+
+@media only screen and (max-width: 779px) {
+  .postCard {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 10px 0;
+  }
+}

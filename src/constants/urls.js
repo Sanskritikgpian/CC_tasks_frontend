@@ -1,0 +1,1 @@
+export const CC_IITKGP_URL = "http://www.counsellingcentre.iitkgp.ac.in/";
