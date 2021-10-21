@@ -6,19 +6,5 @@
   color: teal;
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.comments__likesCount {
-  display: flex;
-  align-self: center;
-  font-size: 15px;
-  font-weight: 700;
-  color: lightcoral;
-  margin-bottom: 15px;
-}
-
-.comments__likesCount > .MuiSvgIcon-root {
-  font-size: 20px;
-  margin-right: 2px;
+  margin: 15px 0;
 }

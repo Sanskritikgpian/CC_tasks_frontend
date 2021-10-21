@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Comments.css";
 // components
 import Comment from "../comment/Comment";
 import CommentInput from "../commentInput/CommentInput";
-// material-ui
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+// contexts
+import UserContext from "../../../contexts/User";
 
-const Comments = ({ postId, likesCount, comments, setComments }) => {
+const Comments = ({ postId, comments, setComments }) => {
+    const { user } = useContext(UserContext);
     return (
         <div className="comments">
-            <CommentInput postId={postId} setComments={setComments} />
-            <p className="comments__likesCount"><FavoriteRoundedIcon />{likesCount + " " + (likesCount === 1 ? "like" : "likes")}</p>
-            <p className="comments__discussion">What people think...</p>
+            {user ? <CommentInput postId={postId} setComments={setComments} /> : null}
+            {comments?.length ? <p className="comments__discussion">what we think...</p> : null}
             {comments?.map((comment, index) => <Comment key={index} comment={comment} delay={index < 3 ? 0.2 * index : 0.6} />)}
         </div>
     );
