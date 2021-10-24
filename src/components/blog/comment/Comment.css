@@ -16,17 +16,19 @@
   color: teal;
   font-size: 16px;
   font-weight: 600;
+  margin: 0;
 }
 
 .comment__professionalAffiliation {
   font-size: 12px;
-  margin-bottom: 5px;
+  margin: 0;
   font-weight: 500;
   color: teal;
 }
 
 .comment__content {
   font-size: 15px;
+  margin: 10px 0;
 }
 
 .comment__date {
@@ -34,6 +36,7 @@
   position: absolute;
   bottom: 5px;
   right: 10px;
+  margin: 0;
 }
 
 @keyframes comment__appear {

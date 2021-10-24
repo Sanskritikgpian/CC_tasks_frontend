@@ -18,6 +18,18 @@ body {
   overflow-x: hidden;
 }
 
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #1d2410;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: gray;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

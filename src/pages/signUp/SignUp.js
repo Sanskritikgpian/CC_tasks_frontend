@@ -7,6 +7,8 @@ import "./SignUp.css";
 import { CC_IITKGP_URL } from "../../constants/urls";
 import { HOME_ROUTE, SIGN_IN_ROUTE } from "../../constants/routes";
 import { NEW_ENDPOINT, TOKEN_ENDPOINT } from "../../constants/endpoints";
+// components
+import Loader from "../../components/loader/Loader";
 // material-ui
 import { Avatar, Button, CssBaseline, TextField, Paper, Box, Grid, Typography, IconButton } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -39,6 +41,7 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [confirmedPassword, setConfirmedPassword] = useState("");
     const [accessKey, setAccessKey] = useState("");
+    const [loading, setLoading] = useState(false);
     // errors
     const [nameErr, setNameErr] = useState(false);
     const [professionalAffiliationErr, setProfessionalAffiliationErr] = useState(false);
@@ -71,14 +74,19 @@ const SignUp = () => {
             setConfirmedPassword("");
         }
         else if (name && professionalAffiliation && validator.isEmail(email) && password && confirmedPassword && accessKey) {
+            setLoading(true);
             const signUpData = { name, professionalAffiliation, email, password, accessKey };
 
             axios.post(NEW_ENDPOINT, signUpData).then(res => {
                 const token = res.data;
                 localStorage.setItem("cc_task", JSON.stringify({ token }));
                 setErrorMsg("");
+                setLoading(false);
                 history.push(HOME_ROUTE);
-            }).catch(err => setErrorMsg(err.response.data.errMsg));
+            }).catch(err => {
+                setErrorMsg(err.response.data.errMsg);
+                setLoading(false);
+            });
 
             // reset
             e.target.reset();
@@ -87,6 +95,7 @@ const SignUp = () => {
 
     return (
         <ThemeProvider theme={theme}>
+            {loading ? <Loader /> : null}
             <IconButton onClick={() => history.push(HOME_ROUTE)} style={{ position: "fixed", top: "10px", left: "10px", color: "white", backgroundColor: "teal", zIndex: "5" }}><HomeRoundedIcon style={{ fontSize: "30px" }} /></IconButton>
             <Grid container component="main" sx={{ height: '100vh' }} style={{ overflow: "hidden" }}>
                 <CssBaseline />

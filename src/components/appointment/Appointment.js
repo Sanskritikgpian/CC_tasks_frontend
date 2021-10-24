@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import validator from "validator";
 import "./Appointment.css";
-// Endpoints
-import { BOOK_APPOINTMENT_ENDPOINT } from "../../../constants/endpoints";
+// constants
+import { BLOG_ROUTE, SIGN_IN_ROUTE, SIGN_UP_ROUTE } from "../../constants/routes";
+import { BOOK_APPOINTMENT_ENDPOINT } from "../../constants/endpoints";
 // components
-import Loader from "../../loader/Loader";
+import Loader from "../loader/Loader";
 // material ui
-import { TextField, Button, Snackbar, Alert } from "@mui/material";
+import { TextField, Button, SpeedDial, SpeedDialAction, SpeedDialIcon, Snackbar, Alert } from "@mui/material";
 import { LocalizationProvider, StaticDatePicker, StaticTimePicker } from "@mui/lab";
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
+import PersonAddRoundedIcon from "@mui/icons-material/PersonAddRounded";
+import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
+import PostAddRoundedIcon from "@mui/icons-material/PostAddRounded";
+// contexts
+import UserContext from "../../contexts/User";
 
 const Appointment = () => {
+    const history = useHistory();
+    const { user } = useContext(UserContext);
     // states
     const [inProgress, setInProgress] = useState(false);
     const [alert, setAlert] = useState(false);
@@ -29,6 +39,11 @@ const Appointment = () => {
     const [emailErr, setEmailErr] = useState(false);
     // disable browser auto-complete
     const disableAutoComplete = { autoComplete: "new-password", form: { autoComplete: "off" } };
+
+    const handleSignOut = () => {
+        localStorage.removeItem("cc_task");
+        history.push(SIGN_IN_ROUTE);
+    };
 
     const handleAppointment = e => {
         e.preventDefault();
@@ -70,9 +85,16 @@ const Appointment = () => {
     return (
         <div className="appointment">
             {inProgress ? <Loader /> : null}
-            <Snackbar open={alert} autoHideDuration={15000} onClose={() => setAlert(false)}>
+            <Snackbar open={alert} autoHideDuration={10000} onClose={() => setAlert(false)}>
                 <Alert onClose={() => setAlert(false)} severity="success" sx={{ width: "100%" }}>Appointment booked!</Alert>
             </Snackbar>
+            <div className="appointment__intro">
+                <h1>Welcome to CC Blog</h1>
+                <p>A person's most beautiful useful asset is not a head full of knowledge, but a heart full of love, an ear ready to listen and a hand willing to help others.</p>
+                <div className="appointment__introButtons">
+                    <Button onClick={() => window.scrollTo(0, window.innerHeight - 75)}>Book an appointment!</Button>
+                </div>
+            </div>
             <form className="appointment__form" onSubmit={e => handleAppointment(e)}>
                 <h1 style={{ color: "teal" }}>Book an appointment today.</h1>
                 <div className="appointment__info">
@@ -106,6 +128,12 @@ const Appointment = () => {
                     <Button type="submit" style={{ marginLeft: "2.5px", backgroundColor: "teal" }}>Submit</Button>
                 </div>
             </form>
+            <SpeedDial ariaLabel="SpeedDial basic example" sx={{ position: 'fixed', right: 10, bottom: 10 }} icon={<SpeedDialIcon style={{ color: "white" }} />}>
+                <SpeedDialAction key={"go to blog"} icon={<PostAddRoundedIcon />} tooltipTitle={"go to blog"} onClick={() => history.push(BLOG_ROUTE)} />
+                {!user ? <SpeedDialAction key={"Sign in for counsellors"} icon={<VpnKeyRoundedIcon />} tooltipTitle={"Sign in for counsellors"} onClick={() => history.push(SIGN_IN_ROUTE)} /> : null}
+                {!user ? <SpeedDialAction key={"Sign up for counsellors"} icon={<PersonAddRoundedIcon />} tooltipTitle={"Sign up for counsellors"} onClick={() => history.push(SIGN_UP_ROUTE)} /> : null}
+                {user ? <SpeedDialAction key={"Sign out for counsellors"} icon={<ExitToAppRoundedIcon />} tooltipTitle={"Sign out for counsellors"} onClick={() => handleSignOut()} /> : null}
+            </SpeedDial>
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // constants
 import { HOME_ROUTE, SIGN_IN_ROUTE, SIGN_UP_ROUTE } from "./constants/routes";
 // components
@@ -14,10 +14,9 @@ const App = () => {
     <Router>
       <Suspense fallback={<Loader />}>
         <Switch>
-          <Route exact path={HOME_ROUTE} component={Home} />
           <Route exact path={SIGN_IN_ROUTE} component={SignIn} />
           <Route exact path={SIGN_UP_ROUTE} component={SignUp} />
-          <Redirect to={HOME_ROUTE} />
+          <Route path={HOME_ROUTE} component={Home} />
         </Switch>
       </Suspense>
     </Router>

@@ -1,29 +1,29 @@
 import React, { useEffect } from "react";
-// import axios from "axios";
 import "./Post.css";
 // material-ui
 import { IconButton } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import QuestionAnswerRoundedIcon from "@mui/icons-material/QuestionAnswerRounded";
-import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded';
+import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
+import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 // components
 import Comments from "../comments/Comments";
-// endpoints
 // consts
 const postPhotoURL = "https://source.unsplash.com/1600x900/?quotes";
 
 const Post = ({ post, setPostState, comments, setComments }) => {
-    const handleScrollEvents = () => {
-        const post = document.querySelector(".post__container");
-        const scrollToTopBtn = document.querySelector(".post__scrollToTopBtn");
-        scrollToTopBtn.style.transform = post.scrollTop > 10 ? "scale(1)" : "scale(0)";
-    };
 
     useEffect(() => {
+        const handleScrollEvents = () => {
+            const post = document.querySelector(".post__container");
+            const scrollToTopBtn = document.querySelector(".post__scrollToTopBtn");
+            scrollToTopBtn.style.transform = post.scrollTop > 10 ? "scale(1)" : "scale(0)";
+        };
+
         const post = document.querySelector(".post__container");
         post.addEventListener("scroll", handleScrollEvents)
         return () => document.removeEventListener("scroll", handleScrollEvents)
-    }, [handleScrollEvents])
+    }, [])
 
     const goToDiscussion = e => {
         const post = document.querySelector(".post__container");
@@ -48,9 +48,10 @@ const Post = ({ post, setPostState, comments, setComments }) => {
                 <div className="post__main">
                     <p className="post__date">{post.date}</p>
                     <p className="post__title">{post.title}</p>
-                    <p className="post__name">{post.name ? post.name : "from Anonymous"}</p>
+                    <p className="post__name">{post.name ? "from " + post.name : "from Anonymous"}</p>
                     <p className="post__content">{post.content}</p>
                 </div>
+                <p className="post__viewsCount"><RemoveRedEyeRoundedIcon />{post.views} {post.views === 1 ? "view" : "views"}</p>
                 <Comments postId={post._id} comments={comments} setComments={setComments} />
             </div>
         </div>

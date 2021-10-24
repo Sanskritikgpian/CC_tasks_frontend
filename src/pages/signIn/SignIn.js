@@ -7,6 +7,8 @@ import "./SignIn.css";
 import { CC_IITKGP_URL } from "../../constants/urls";
 import { HOME_ROUTE, SIGN_UP_ROUTE } from "../../constants/routes";
 import { AUTH_ENDPOINT, TOKEN_ENDPOINT } from "../../constants/endpoints";
+// components
+import Loader from "../../components/loader/Loader";
 // material-ui
 import { Avatar, Button, CssBaseline, TextField, Paper, Box, Grid, IconButton, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -34,15 +36,20 @@ const SignIn = () => {
     const [errorMsg, setErrorMsg] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     // errors
     const [emailErr, setEmailErr] = useState(false);
     const [passwordErr, setPasswordErr] = useState(false);
 
     useEffect(() => {
         try {
+            setLoading(true);
             const { token } = JSON.parse(localStorage.getItem("cc_task"));
-            axios.post(TOKEN_ENDPOINT, { token }).then(res => history.push(HOME_ROUTE)).catch(err => { });
-        } catch (err) { }
+            axios.post(TOKEN_ENDPOINT, { token }).then(res => {
+                setLoading(false);
+                history.push(HOME_ROUTE);
+            }).catch(err => { setLoading(false); });
+        } catch (err) { setLoading(false); }
     }, [history]);
 
     const handleSubmit = e => {
@@ -53,21 +60,24 @@ const SignIn = () => {
         setPasswordErr(!password);
 
         if (validator.isEmail(email) && password) {
+            setLoading(true);
             const signInData = { email, password };
 
             axios.post(AUTH_ENDPOINT, signInData).then(res => {
                 const token = res.data;
                 localStorage.setItem("cc_task", JSON.stringify({ token }));
+                setLoading(false);
                 history.push(HOME_ROUTE);
-            }).catch(err => { setErrorMsg(err.response.data.errMsg) });
+            }).catch(err => { setErrorMsg(err.response.data.errMsg); setLoading(false); });
 
             // reset
-            // e.target.reset();
+            e.target.reset();
         }
     };
 
     return (
         <ThemeProvider theme={theme}>
+            {loading ? <Loader /> : null}
             <IconButton onClick={() => history.push(HOME_ROUTE)} style={{ position: "fixed", top: "10px", right: "10px", color: "white", backgroundColor: "teal", zIndex: "5" }}><HomeRoundedIcon style={{ fontSize: "30px" }} /></IconButton>
             <Grid container component="main" sx={{ height: '100vh' }} style={{ overflow: "hidden" }}>
                 <CssBaseline />

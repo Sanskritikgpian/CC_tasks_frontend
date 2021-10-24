@@ -92,6 +92,18 @@
   animation: post__btnDefault 2s linear infinite !important;
 }
 
+.post__viewsCount {
+  color: #808080;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.post__viewsCount > .MuiSvgIcon-root {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
 @keyframes post__btnDefault {
   25% {
     margin-bottom: 5px;
