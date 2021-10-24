@@ -46,8 +46,8 @@ const Home = () => {
     return (
         <UserContext.Provider value={{ user }}>
             {loading ? <Loader /> : null}
+            <IconButton onClick={() => window.scrollTo(0, 0)} className="home__scrollToTopBtn"><ArrowUpwardRoundedIcon /></IconButton>
             <div className="home">
-                <IconButton onClick={() => window.scrollTo(0, 0)} className="home__scrollToTopBtn" style={{ backgroundColor: "#212613" }}><ArrowUpwardRoundedIcon /></IconButton>
                 <Nav />
                 <section className="home__body">
                     <Suspense fallback={<Loader />}>

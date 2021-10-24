@@ -10,15 +10,17 @@
 }
 
 .home__scrollToTopBtn {
-  position: fixed;
+  position: fixed !important;
   bottom: 10px;
   left: 10px;
-  color: white;
-  border: 2px solid white;
+  color: white !important;
+  background-color: #212613 !important;
+  border: 2px solid white !important;
   z-index: 2;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
   transform: scale(0);
-  transition: all 0.5s;
+  transition: all 0.5s !important;
+  margin-bottom: 0;
   animation: home__btnDefault 2s linear infinite !important;
 }
 
@@ -27,7 +29,7 @@
   background-color: #212613;
 }
 
-.home__scrollToTopBt > .MuiSvgIcon-root {
+.home__scrollToTopBtn > .MuiSvgIcon-root {
   font-size: 30px;
 }
 

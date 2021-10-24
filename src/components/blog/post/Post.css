@@ -88,7 +88,7 @@
 
 .post__scrollToTopBtn {
   transform: scale(0);
-  transition: all 0.2s;
+  transition: all 0.2s !important;
   animation: post__btnDefault 2s linear infinite !important;
 }
 
