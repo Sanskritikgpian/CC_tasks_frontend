@@ -25,11 +25,10 @@ const NewPost = ({ setNewPostState, setPosts, setAlert }) => {
             setLoading(true);
             axios.post(ADD_POST_ENDPOINT, postData)
                 .then(res => {
-                    setPosts(posts => ([...posts, postData]));
+                    setPosts(posts => ([{ ...postData, _id: res.data._id }, ...posts]));
                     setNewPostState(false);
                     setLoading(false);
                     setAlert(true);
-                    // window.location.reload();
                 })
                 .catch(err => { setLoading(false); })
         } catch (err) { setLoading(false); }

@@ -7,7 +7,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 const Footer = () => {
     return (
         <div className="footer" id="main">
-            <div className="row">
+            <div className="row" style={{ width: "calc(100vw + 15px)" }}>
                 <h2 className="col" >Contact Us - 03222-281173</h2>
             </div>
             <div className="row container py-3 align-content-center" id="section">

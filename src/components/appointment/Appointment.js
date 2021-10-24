@@ -9,8 +9,8 @@ import { BOOK_APPOINTMENT_ENDPOINT } from "../../constants/endpoints";
 // components
 import Loader from "../loader/Loader";
 // material ui
-import { TextField, Button, SpeedDial, SpeedDialAction, SpeedDialIcon, Snackbar, Alert } from "@mui/material";
-import { LocalizationProvider, StaticDatePicker, StaticTimePicker } from "@mui/lab";
+import { TextField, Button, SpeedDial, SpeedDialAction, SpeedDialIcon, Snackbar, Alert, TextareaAutosize } from "@mui/material";
+import { LocalizationProvider, MobileDateTimePicker } from "@mui/lab";
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import PersonAddRoundedIcon from "@mui/icons-material/PersonAddRounded";
@@ -30,8 +30,8 @@ const Appointment = () => {
     const [lastName, setLastName] = useState("");
     const [rollNum, setRollNum] = useState("");
     const [email, setEmail] = useState("");
+    const [detail, setDetail] = useState("");
     const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState(new Date());
     // errors
     const [firstNameErr, setFirstNameErr] = useState(false);
     const [lastNameErr, setLastNameErr] = useState(false);
@@ -60,7 +60,7 @@ const Appointment = () => {
         // appointment
         if (firstName && lastName && rollNum && validator.isEmail(email)) {
             setInProgress(true);
-            const data = { firstName, lastName, rollNum, email, date: date.toString().substring(0, 15), time: time.toString().substring(16, 24) }
+            const data = { firstName, lastName, rollNum, email, detail, date: date }
 
             try {
                 axios.post(BOOK_APPOINTMENT_ENDPOINT, data)
@@ -68,7 +68,7 @@ const Appointment = () => {
                     .catch(() => { setInProgress(false); });
             } catch (err) { setInProgress(false); }
 
-            clearForm();
+            // clearForm();
         }
     };
 
@@ -78,8 +78,7 @@ const Appointment = () => {
         setLastName("");
         setRollNum("");
         setEmail("");
-        setDate(new Date().toLocaleString(undefined, { timeZone: 'Asia/Kolkata' }));
-        setTime(new Date().toLocaleString(undefined, { timeZone: 'Asia/Kolkata' }));
+        setDate(new Date());
     };
 
     return (
@@ -106,22 +105,17 @@ const Appointment = () => {
                     <TextField variant="standard" label="Roll Number" error={rollNumErr} helperText={rollNumErr ? "Please, enter your roll number." : ""} value={rollNum} onChange={e => setRollNum(e.target.value)} style={{ marginLeft: "10px" }} inputProps={disableAutoComplete} />
                 </div>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <div className="appointment__dateTime">
-                        <StaticDatePicker
-                            displayStaticWrapperAs="desktop"
-                            openTo="day"
-                            value={date}
-                            onChange={newValue => setDate(newValue)}
-                            renderInput={params => <TextField {...params} />}
-                        />
-                        <StaticTimePicker
-                            displayStaticWrapperAs="mobile"
-                            value={time}
-                            onChange={newValue => setTime(newValue)}
-                            renderInput={params => <TextField {...params} />}
-                        />
-                    </div>
+                    <MobileDateTimePicker
+                        value={date}
+                        onChange={date => {
+                            setDate(date);
+                        }}
+                        renderInput={(params) => <TextField {...params} variant="standard" style={{ width: "100%", margin: "10px" }} />}
+                    />
                 </LocalizationProvider>
+                <div className="appointment__detail" style={{ width: "100%" }}>
+                    <TextareaAutosize aria-label="minimum height" placeholder="Describe the need for consultation." value={detail} onChange={e => setDetail(e.target.value)} />
+                </div>
                 {errorMsg ? <p className="appointment__errMsg">{errorMsg}</p> : null}
                 <div className="appointment__buttons">
                     <Button style={{ marginRight: "2.5px", backgroundColor: "grey" }} onClick={() => clearForm()}>Clear</Button>

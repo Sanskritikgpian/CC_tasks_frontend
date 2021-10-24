@@ -58,7 +58,6 @@ const Home = () => {
                         </Switch>
                     </Suspense>
                 </section>
-                <div className="home__footerParallax" style={{ height: "100vh" }}></div>
                 <Footer />
             </div>
         </UserContext.Provider>

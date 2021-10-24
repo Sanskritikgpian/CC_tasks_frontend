@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./Nav.css";
 // components
 import Dropdown from "../dropdown/Dropdown";
+import SideNav from "../sideNav/SideNav";
 // constants
 import { LOGO_2_PNG } from "../../../constants/images";
 import links from "./Links";
 // material-ui
+import { Drawer } from "@mui/material";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 
 const Nav = () => {
   const [navState, setNavState] = useState(false);
@@ -14,6 +17,7 @@ const Nav = () => {
   const [eventsState, setEventsState] = useState(false);
   const [instaLinksState, setInstaLinksState] = useState(false);
   const [anecdotesState, setAnecdotesState] = useState(false);
+  const [sideNavState, setSideNavState] = useState(false);
 
   const dropdownStates = {
     "Services": {
@@ -63,6 +67,12 @@ const Nav = () => {
           )
         }
       </div>
+      <div className="nav__menuBtn">
+        <MenuRoundedIcon onClick={() => setSideNavState(true)} />
+      </div>
+      <Drawer anchor={"right"} open={sideNavState} onClose={() => setSideNavState(false)}>
+        <SideNav />
+      </Drawer>
     </nav>
   );
 };

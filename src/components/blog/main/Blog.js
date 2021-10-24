@@ -59,13 +59,13 @@ const Blog = () => {
                 </div>
             </div>
             <div className="blog__postCollection">
-                <p><EventIcon />Most Recent</p>
+                <p><EventIcon />Recent Posts</p>
                 <div className="blog__posts">
                     {posts.length ? posts.slice(0, 3).map((post, index) => <PostCard key={index} post={post} setPost={setPost} setPosts={setPosts} setPostState={setPostState} setComments={setComments} />) : <p style={{ fontSize: "20px", fontWeight: "600", textAlign: "center", color: "gray", margin: "50px 0" }}>No posts yet.</p>}
                 </div>
             </div>
             <div className="blog__postCollection">
-                <p><PeopleRoundedIcon />Top Posts</p>
+                <p><PeopleRoundedIcon />Most Viewed</p>
                 <div className="blog__posts" >
                     {posts.length ? [...posts].sort((a, b) => b.views - a.views).slice(0, 3).map((post, index) => <PostCard key={index} post={post} setPost={setPost} setPosts={setPosts} setPostState={setPostState} setComments={setComments} fullWidth />) : <p style={{ fontSize: "20px", fontWeight: "600", textAlign: "center", color: "gray", margin: "50px 0" }}>No posts yet.</p>}
                 </div>

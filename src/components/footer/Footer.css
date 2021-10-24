@@ -1,9 +1,7 @@
 .footer {
-  position: fixed;
-  bottom: 0;
   color: black;
   background-color: lightblue;
-  width: 100%;
+  width: 100vw;
 }
 
 h2 {
