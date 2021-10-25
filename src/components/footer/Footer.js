@@ -4,7 +4,6 @@ import "./Footer.css";
 import * as LINKS from "../../constants/urls";
 // material-ui
 import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';

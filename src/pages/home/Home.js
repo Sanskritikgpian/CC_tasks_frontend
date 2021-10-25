@@ -4,7 +4,7 @@ import axios from "axios";
 import "./Home.css";
 // constants
 import { TOKEN_ENDPOINT } from "../../constants/endpoints";
-import { BLOG_ROUTE, APPOINTMENT_ROUTE, APPOINTMENTS_ROUTE, VIDEO_CALL_ROUTE } from "../../constants/routes";
+import { BLOG_ROUTE, APPOINTMENT_ROUTE, APPOINTMENTS_ROUTE } from "../../constants/routes";
 // components
 import Nav from "../../components/nav/main/Nav";
 import Loader from "../../components/loader/Loader"
@@ -18,7 +18,6 @@ import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
 const Blog = lazy(() => import("../../components/blog/main/Blog"));
 const Appointment = lazy(() => import("../../components/appointment/Appointment"));
 const Appointments = lazy(() => import("../../components/appointments/main/Appointments"));
-const VideoCall = lazy(() => import("../../components/videoCall/VideoCall"));
 
 const Home = () => {
     const [user, setUser] = useState(null);
@@ -51,17 +50,14 @@ const Home = () => {
             <IconButton onClick={() => window.scrollTo(0, 0)} className="home__scrollToTopBtn" ><ArrowUpwardRoundedIcon /></IconButton>
             <div className="home">
                 <Nav />
-                <section className="home__body">
-                    <Suspense fallback={<Loader />}>
-                        <Switch>
-                            <Route exact path={BLOG_ROUTE} component={Blog} />
-                            <Route exact path={APPOINTMENT_ROUTE} component={Appointment} />
-                            <Route exact path={APPOINTMENTS_ROUTE} component={Appointments} />
-                            <Route exact path={VIDEO_CALL_ROUTE} component={VideoCall} />
-                            <Redirect to={BLOG_ROUTE} />
-                        </Switch>
-                    </Suspense>
-                </section>
+                <Suspense fallback={<Loader />}>
+                    <Switch>
+                        <Route exact path={BLOG_ROUTE} component={Blog} />
+                        <Route exact path={APPOINTMENT_ROUTE} component={Appointment} />
+                        <Route exact path={APPOINTMENTS_ROUTE} component={Appointments} />
+                        <Redirect to={BLOG_ROUTE} />
+                    </Switch>
+                </Suspense>
                 <Footer />
             </div>
         </UserContext.Provider>

@@ -24,7 +24,7 @@ footer {
   z-index: 0;
 }
 .footer-list-top {
-  width: calc(33.33vw - 40px);
+  width: calc(33.33vw - 60px);
 }
 .footer-list-top > li {
   padding-bottom: 10px;
