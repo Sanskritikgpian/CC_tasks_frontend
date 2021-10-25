@@ -1,0 +1,8 @@
+.appointmentCard {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 100vw;
+  max-width: 1000px;
+  margin: 10px;
+  padding: 10px;
+}

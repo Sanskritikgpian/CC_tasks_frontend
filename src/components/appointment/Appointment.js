@@ -4,7 +4,7 @@ import axios from "axios";
 import validator from "validator";
 import "./Appointment.css";
 // constants
-import { BLOG_ROUTE, SIGN_IN_ROUTE, SIGN_UP_ROUTE } from "../../constants/routes";
+import { APPOINTMENT_ROUTE, APPOINTMENTS_ROUTE, BLOG_ROUTE, SIGN_IN_ROUTE, SIGN_UP_ROUTE } from "../../constants/routes";
 import { BOOK_APPOINTMENT_ENDPOINT } from "../../constants/endpoints";
 // components
 import Loader from "../loader/Loader";
@@ -15,7 +15,9 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import PersonAddRoundedIcon from "@mui/icons-material/PersonAddRounded";
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
+import AssignmentIcon from "@mui/icons-material/Assignment";
 import PostAddRoundedIcon from "@mui/icons-material/PostAddRounded";
+import FolderRoundedIcon from "@mui/icons-material/FolderRounded";
 // contexts
 import UserContext from "../../contexts/User";
 
@@ -68,7 +70,7 @@ const Appointment = () => {
                     .catch(() => { setInProgress(false); });
             } catch (err) { setInProgress(false); }
 
-            // clearForm();
+            clearForm();
         }
     };
 
@@ -124,6 +126,8 @@ const Appointment = () => {
             </form>
             <SpeedDial ariaLabel="SpeedDial basic example" sx={{ position: 'fixed', right: 10, bottom: 10 }} icon={<SpeedDialIcon style={{ color: "white" }} />}>
                 <SpeedDialAction key={"go to blog"} icon={<PostAddRoundedIcon />} tooltipTitle={"go to blog"} onClick={() => history.push(BLOG_ROUTE)} />
+                {!user ? <SpeedDialAction key={"book an appointment"} icon={<AssignmentIcon />} tooltipTitle={"book an appointment"} onClick={() => history.push(APPOINTMENT_ROUTE)} /> : null}
+                {user ? <SpeedDialAction key={"Appointments"} icon={<FolderRoundedIcon />} tooltipTitle={"Appointments"} onClick={() => history.push(APPOINTMENTS_ROUTE)} /> : null}
                 {!user ? <SpeedDialAction key={"Sign in for counsellors"} icon={<VpnKeyRoundedIcon />} tooltipTitle={"Sign in for counsellors"} onClick={() => history.push(SIGN_IN_ROUTE)} /> : null}
                 {!user ? <SpeedDialAction key={"Sign up for counsellors"} icon={<PersonAddRoundedIcon />} tooltipTitle={"Sign up for counsellors"} onClick={() => history.push(SIGN_UP_ROUTE)} /> : null}
                 {user ? <SpeedDialAction key={"Sign out for counsellors"} icon={<ExitToAppRoundedIcon />} tooltipTitle={"Sign out for counsellors"} onClick={() => handleSignOut()} /> : null}

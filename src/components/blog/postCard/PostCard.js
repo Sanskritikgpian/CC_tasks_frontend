@@ -53,7 +53,7 @@ const PostCard = ({ post, setPost, setPosts, setPostState, setComments, fullWidt
     };
 
     return (
-        <div className="postCard" style={fullWidth ? { width: "100%" } : {}} >
+        <div className="postCard" style={fullWidth ? { width: "100%", minHeight: "200px" } : {}} >
             {loading ? <Loader /> : null}
             {user ? <IconButton onClick={() => deletePost()}><DeleteRoundedIcon /></IconButton> : null}
             <Snackbar open={alert} autoHideDuration={10000} onClose={() => setAlert(false)}>
@@ -62,7 +62,7 @@ const PostCard = ({ post, setPost, setPosts, setPostState, setComments, fullWidt
             <p className="postCard__date">{post.date}</p>
             <p className="postCard__title">{post.title}</p>
             <p className="postCard__name">{post.name ? "from " + post.name : "from Anonymous"}</p>
-            <p className="postCard__content">{truncate(post.content, 150, "...")}</p>
+            <p className="postCard__content">{!fullWidth ? truncate(post.content, 150, "...") : post.content}</p>
             <Button onClick={() => handlePostClick()}>View</Button>
             <p className="postCard__viewsCount"><RemoveRedEyeRoundedIcon />{post.views} {post.views === 1 ? "view" : "views"}</p>
         </div>

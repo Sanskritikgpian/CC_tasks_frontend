@@ -5,7 +5,7 @@ import "./Blog.css";
 // constants
 import { GET_POSTS_ENDPOINT } from "../../../constants/endpoints";
 import { CC_IITKGP_URL } from "../../../constants/urls";
-import { APPOINTMENT_ROUTE, SIGN_IN_ROUTE, SIGN_UP_ROUTE } from "../../../constants/routes";
+import { APPOINTMENTS_ROUTE, APPOINTMENT_ROUTE, SIGN_IN_ROUTE, SIGN_UP_ROUTE } from "../../../constants/routes";
 // components
 import Post from "../post/Post";
 import NewPost from "../newPost/NewPost";
@@ -21,6 +21,7 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import TodayIcon from "@mui/icons-material/Today";
 import EventIcon from "@mui/icons-material/Event";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
+import FolderRoundedIcon from "@mui/icons-material/FolderRounded";
 // contexts
 import UserContext from "../../../contexts/User";
 
@@ -70,7 +71,7 @@ const Blog = () => {
                     {posts.length ? [...posts].sort((a, b) => b.views - a.views).slice(0, 3).map((post, index) => <PostCard key={index} post={post} setPost={setPost} setPosts={setPosts} setPostState={setPostState} setComments={setComments} fullWidth />) : <p style={{ fontSize: "20px", fontWeight: "600", textAlign: "center", color: "gray", margin: "50px 0" }}>No posts yet.</p>}
                 </div>
             </div>
-            <div className="blog__postCollection">
+            <div className="blog__postCollection" style={{ marginBottom: "75px" }}>
                 <p><TodayIcon />Older Posts</p>
                 <div className="blog__posts">
                     {posts.length ? posts.map((post, index) => <PostCard key={index} post={post} setPost={setPost} setPosts={setPosts} setPostState={setPostState} setComments={setComments} />) : <p style={{ fontSize: "20px", fontWeight: "600", textAlign: "center", color: "gray", margin: "50px 0" }}>No posts yet.</p>}
@@ -84,10 +85,11 @@ const Blog = () => {
             </Drawer>
             <SpeedDial ariaLabel="SpeedDial basic example" sx={{ position: 'fixed', right: 10, bottom: 10 }} icon={<SpeedDialIcon style={{ color: "white" }} />}>
                 <SpeedDialAction key={"write a post"} icon={<CreateRoundedIcon />} tooltipTitle={"write a post"} onClick={() => setNewPostState(true)} />
-                <SpeedDialAction key={"book an appointment"} icon={<AssignmentIcon />} tooltipTitle={"book an appointment"} onClick={() => history.push(APPOINTMENT_ROUTE)} />
+                {!user ? <SpeedDialAction key={"book an appointment"} icon={<AssignmentIcon />} tooltipTitle={"book an appointment"} onClick={() => history.push(APPOINTMENT_ROUTE)} /> : null}
+                {user ? <SpeedDialAction key={"Appointments"} icon={<FolderRoundedIcon />} tooltipTitle={"Appointments"} onClick={() => history.push(APPOINTMENTS_ROUTE)} /> : null}
                 {!user ? <SpeedDialAction key={"Sign in for counsellors"} icon={<VpnKeyRoundedIcon />} tooltipTitle={"Sign in for counsellors"} onClick={() => history.push(SIGN_IN_ROUTE)} /> : null}
                 {!user ? <SpeedDialAction key={"Sign up for counsellors"} icon={<PersonAddRoundedIcon />} tooltipTitle={"Sign up for counsellors"} onClick={() => history.push(SIGN_UP_ROUTE)} /> : null}
-                {user ? <SpeedDialAction key={"Sign out for counsellors"} icon={<ExitToAppRoundedIcon />} tooltipTitle={"Sign out for counsellors"} onClick={() => handleSignOut()} /> : null}
+                {user ? <SpeedDialAction key={"Sign out"} icon={<ExitToAppRoundedIcon />} tooltipTitle={"Sign out"} onClick={() => handleSignOut()} /> : null}
             </SpeedDial>
             <Snackbar open={alert} autoHideDuration={10000} onClose={() => setAlert(false)}>
                 <Alert onClose={() => setAlert(false)} severity="success" sx={{ width: "100%" }}>Your post was successful!</Alert>

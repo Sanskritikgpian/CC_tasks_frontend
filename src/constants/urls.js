@@ -1,4 +1,7 @@
 export const CC_IITKGP_URL = "http://www.counsellingcentre.iitkgp.ac.in/";
+export const CC_IITKGP_FB_URL = "https://www.facebook.com/CounsellingCentreIITKharagpur2016/?ref=aymt_homepage_panel";
+export const CC_IITKGP_YT_URL = "https://www.youtube.com/channel/UCW4fuT-YqppR9KwHSRW_Www";
+export const CC_IITKGP_MAIL_URL = "mailto:cc@adm.iitkgp.ac.in";
 
 // reach us
 export const REACH_US_URL = "http://www.counsellingcentre.iitkgp.ac.in/?cciit=reach";

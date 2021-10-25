@@ -1,79 +1,74 @@
 import React from "react";
 import "./Footer.css";
+// constants
+import * as LINKS from "../../constants/urls";
+// material-ui
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
 
 const Footer = () => {
     return (
-        <div className="footer" id="main">
-            <div className="row" style={{ width: "calc(100vw + 15px)" }}>
-                <h2 className="col" >Contact Us - 03222-281173</h2>
-            </div>
-            <div className="row container py-3 align-content-center" id="section">
-                <div className="col-md-3">
-                    <div className="row">
-                        <div className="col-12" id="Heading"> COUNSELLING CENTRE</div>
-                        <div className="col-12">IIT Kharagpur
-                            <div>Kharagpur-721302</div>
-                            <div>India</div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12" id="Heading"> E-MAIL</div>
-                        <div className="col-12">cc@adm.iitkgp.ac.in</div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12" id="Heading"> PHONE NO.</div>
-                        <div className="col-12">+91 3222 281173</div>
-                    </div>
-                    <br></br>
-                    <div className="row align-content-center justify-content-center container">
+        <footer className="flex-rw">
+            <ul className="footer-list-top" style={{ marginTop: "20px", marginLeft: "20px", marginRight: "20px" }}>
+                <li>
+                    <h4 className="footer-list-header">Services</h4></li>
+                <li><a href={LINKS.INDIVIDUAL_CONSULTATION_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Individual Consultation</a></li>
+                <li><a href={LINKS.CRISIS_INTERVENTION_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Crisis Intervention</a></li>
+                <li><a href={LINKS.GROUP_COUNSELLING_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Group Counselling</a></li>
 
-                        <div className="col-4"><a className="social" href='https://www.facebook.com/CounsellingCentreIITKharagpur2016/?ref=aymt_homepage_panel'><FacebookIcon /></a></div>
+                <li><a href={LINKS.PSYCHIATRIC_SERVICES_URL} target="_blank" rel="noreferrer" itemprop="significantLink" className="generic-anchor footer-list-anchor">Psychiatric Services</a></li>
 
-                        <div className="col-4">  <a className="social" href='https://www.youtube.com/channel/UCW4fuT-YqppR9KwHSRW_Www'><YouTubeIcon></YouTubeIcon></a></div>
-                        <div className="col-4">  <a className="social" href='https://www.youtube.com/channel/UCW4fuT-YqppR9KwHSRW_Www'><InstagramIcon></InstagramIcon></a></div>
-                    </div>
-                </div>
+                <li><a href={LINKS.GATE_KEEPERS_TRAINING_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Gatekeepers' Training</a></li>
 
-                <div className="col-md-3 align-self-center ">
-                    <div className="col-12" id="Heading">SERVICES</div>
-                    <div className="col-12"><a className="other pages" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=individual-consultation'>Individual Consultation</a></div>
-                    <div className="col-12"><a className="other pages" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=crisis-intervantion'>Crisis Intervention</a></div>
-                    <div className="col-12"><a className="other pages" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=group-counselling'>Group Counselling</a></div>
-                    <div className="col-12"><a className="other pages" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=psychiatric-services'>Psychiatric Services</a></div>
-                    <div className="col-12"><a className="other pages" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=gkt'>Gatekeepers' Training</a></div>
-                    <div className="col-12"><a className="other pages" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=help-a-friend'>Help a Friend</a></div>
-                    <div className="col-12"><a className="other pages" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=after-hour-services'>After Hour Services</a></div>
+                <li><a href={LINKS.HELP_A_FRIEND_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Help A Friend</a></li>
+
+                <li><a href={LINKS.AFTER_HOUR_SERVICES_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">After Hour Services</a></li>
+            </ul>
+            <ul className="footer-list-top" style={{ marginLeft: "20px", marginRight: "20px", marginTop: "20px" }}>
+                <li><h4 className="footer-list-header">Insta-Links</h4></li>
+                <li><a href={LINKS.IWG_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Institute wellness group</a></li>
+                <li><a href={LINKS.SWG_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Students welfare group</a></li>
+                <li><a href={LINKS.YOUR_DOST_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">YourDost</a></li>
+
+                <li><a href={LINKS.MEDALL_URL} target="_blank" rel="noreferrer" itemprop="significantLink" className="generic-anchor footer-list-anchor">Medall</a></li>
+
+                <li><a href={LINKS.RCPSYCH_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Royal College of Psychiatrists</a></li>
+
+                <li><a href={LINKS.PSA_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Pennstate Student Affairs</a></li>
+
+                <li><a href={LINKS.JED_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Jed foundation</a></li>
+
+                <li><a href={LINKS.MIGHTY_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Mighty</a></li>
+            </ul>
+            <ul className="footer-list-top" style={{ marginTop: "20px", marginLeft: "20px", marginRight: "20px" }}>
+                <li id='help'>
+                    <h4 className="footer-list-header">Links</h4></li>
+                <li><a href={LINKS.REACH_US_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Reach Us</a></li>
+                <li><a href={LINKS.HAPPENINGS_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Happenings</a></li>
+                <li id='find-a-store'><a href={LINKS.FAQ_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">FAQ</a></li>
+                <li id='user-registration'><a href={LINKS.TOM_URL} target="_blank" rel="noreferrer" className="generic-anchor footer-list-anchor" itemprop="significantLink">Theme Of The Month</a></li>
+                <li id='order-tracking'><a href={LINKS.PEOPLE_URL} target="_blank" rel="noreferrer" itemprop="significantLink" className="generic-anchor footer-list-anchor">People</a></li>
+            </ul>
+            <section className="footer-social-section flex-rw" style={{ marginTop: "30px" }}>
+                <span className="footer-social-overlap footer-social-connect" style={{ fontSize: "45px" }}>
+                    CONNECT <span className="footer-social-small" style={{ fontSize: "35px" }}>with</span> US
+                </span>
+                <span className="footer-social-overlap footer-social-icons-wrapper" style={{ backgroundColor: "#1d2410" }}>
+                    <a href={LINKS.CC_IITKGP_URL} target="_blank" rel="noreferrer" className="generic-anchor" title="Website" itemprop="significantLink"><LanguageRoundedIcon /></a>
+                    <a href={LINKS.CC_IITKGP_FB_URL} target="_blank" rel="noreferrer" className="generic-anchor" title="Facebook" itemprop="significantLink"><FacebookIcon /></a>
+                    <a href={LINKS.CC_IITKGP_YT_URL} target="_blank" rel="noreferrer" className="generic-anchor" title="Youtube" itemprop="significantLink"><YouTubeIcon /></a>
+                    <a href={LINKS.CC_IITKGP_MAIL_URL} className="generic-anchor" title="Email"><EmailRoundedIcon /></a>
+                </span>
+            </section>
+            <section className="footer-bottom-section flex-rw">
+                <div className="footer-bottom-wrapper" style={{ fontSize: "15px" }}>
+                    Copyright © Counselling Centre - IIT Kharagpur 2021 - All Rights Reserved -
                 </div>
-                <div className="col-md-3 align-self-center ">
-                    <div className="col-6" id="Heading"><a className="other pages" id="major-link" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=reach'>REACH US</a></div>
-                    <div className="col-6" id="Heading"><a className="other pages" id="major-link" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=event'>HAPPENINGS</a></div>
-                    <div className="col-6" id="Heading"><a className="other pages" id="major-link" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=people'>PEOPLE</a></div>
-                    <div className="col-6" id="Heading"><a className="other pages" id="major-link" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=freq'>FAQ</a></div>
-                    <div className="col-6" id="Heading"><a className="other pages" id="major-link" href='http://www.counsellingcentre.iitkgp.ac.in/?cciit=theme-of-the-month'>THEME OF THE MONTH</a></div>
-                </div>
-                <div className="col-md-3 align-self-center " cellSpacing="0" cellPadding="0">
-                    <table className="col-12">
-                        <tbody>
-                            <tr>
-                                <td><span>Quick Response Team</span><br></br><b>Call</b>: 03222-281002 / 281003</td>
-                            </tr>
-                            <tr>
-                                <td><span>Medical Emergency / Mental Health Emergency: B. C. Roy Tech. Hospital Help Desk</span><br></br><b>Call:</b> 03222-281008 / 282632</td>
-                            </tr>
-                            <tr>
-                                <td><span>Fire Emergency</span><br></br><b>Call:</b> 03222-255709</td>
-                            </tr>
-                            <tr>
-                                <td><span>Security Control Room</span><br></br><b>Call:</b> 03222-282751 / 281001 / 281004</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+            </section>
+        </footer>
 
     );
 };

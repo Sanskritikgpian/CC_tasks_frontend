@@ -55,7 +55,7 @@
 .blog__postCollection {
   display: flex;
   flex-direction: column;
-  margin: 30px 0;
+  margin-top: 75px;
 }
 
 .blog__postCollection > p {
