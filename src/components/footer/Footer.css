@@ -19,7 +19,7 @@ a {
 }
 footer {
   background: #1d2410;
-  margin-top: auto;
+  padding-top: 9px;
   width: 100%;
   z-index: 0;
 }

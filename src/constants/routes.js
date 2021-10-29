@@ -4,4 +4,3 @@ export const SIGN_UP_ROUTE = "/sign_up";
 export const BLOG_ROUTE = "/blog";
 export const APPOINTMENT_ROUTE = "/appointment";
 export const APPOINTMENTS_ROUTE = "/appointments";
-export const VIDEO_CALL_ROUTE = "/video";
