@@ -3,6 +3,7 @@
   width: 100vw;
   display: grid;
   place-items: center;
+  background-color: #e8f1d5;
 }
 
 .appointment__intro {
@@ -11,8 +12,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: url("https://images.unsplash.com/photo-1522241112606-b5d35a468795?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80")
-    rgba(0, 0, 0, 0.5) no-repeat center center / cover;
+  background: url("http://www.counsellingcentre.iitkgp.ac.in/img/img-12.jpg")
+    rgba(0, 0, 0, 0.5) no-repeat center top / cover;
   background-blend-mode: overlay;
   background-attachment: fixed;
   height: 100vh;
@@ -121,7 +122,7 @@
 
 .appointment__buttons > .MuiButton-root:hover {
   filter: brightness(0.8);
-  background-color: teal;
+  background-color: rgb(42, 78, 8);
 }
 
 .appointment__buttons > .MuiButton-root:focus {
@@ -154,12 +155,12 @@
 }
 
 .appointment__detail textarea::-webkit-scrollbar-thumb {
-  background-color: #1976d2;
+  background-color: rgb(42, 78, 8);
 }
 
 .appointment__detail textarea:focus {
-  border: 1.5px solid #1976d2;
-  outline: 1px solid #1976d2;
+  border: 1.5px solid rgb(42, 78, 8);
+  outline: 1px solid rgb(42, 78, 8);
 }
 
 @keyframes appointment__btnClick {

@@ -3,6 +3,7 @@
   width: 100vw;
   display: grid;
   place-items: center;
+  background-color: #e8f1d5;
 }
 
 .blog > .MuiIconButton-root {
@@ -63,8 +64,8 @@
   align-items: center;
   font-weight: 600;
   font-size: 25px;
-  color: rgb(94, 94, 94);
-  background-color: rgb(223, 222, 222);
+  color: rgb(59, 56, 56);
+  background-color: rgb(255, 255, 255);
   padding: 5px 10px;
   border-radius: 3px;
 }
